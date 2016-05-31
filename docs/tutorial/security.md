@@ -1,39 +1,16 @@
-# Security, Native Capabilities, and Your Responsibility
+#安全，本机功能，和你的职责
 
-As web developers, we usually enjoy the strong security net of the browser - the
-risks associated with the code we write are relatively small.  Our websites are
-granted limited powers in a sandbox, and we trust that our users enjoy a browser
-built by a large team of engineers that is able to quickly respond to newly
-discovered security threats.
+作为一个web开发者，我们通常比较喜欢安全性强的浏览器，它能够让我们写代码的风险降低到一个相对小的位置。我们的网站在一个安全沙箱中运行，并且我们相信，我们的用户也希望浏览器有一个强大的团队支持，来响应各种安全问题。
 
-When working with Electron, it is important to understand that Electron is not
-a web browser. It allows you to build feature-rich desktop applications with
-familiar web technologies, but your code wields much greater power. JavaScript
-can access to the filesystem, the user shell, and more. This allows you to build
-high quality native applications, but the inherent security risks scale with the
-additional powers granted to your code.
+当我们用Electron做开发的时候，我们必须明白，Electron不是浏览器。它让你用比较擅长的web技术来做桌面应用的开发，你的代码能够做更多的事情，JavaScript能够访问文件系统了，也能够使用shell，还有其他等等此前不能够做的事情。它让你能够构建高品质的本地应用的同时，安全风险也随之而来。
 
-With that in mind, be aware that displaying arbitrary content from untrusted
-sources poses a severe security risk that Electron is not intended to handle.
-In fact, the most popular Electron apps (Atom, Slack, Visual Studio Code, etc)
-display primarily local content (or trusted, secure remote content without Node
-integration) – if your application executes code from an online source, it is
-your responsibility to ensure that the code is not malicious.
+也就是说，会承受大量来自不受信任的代码引起的安全问题，Electron不会帮你处理。实际上，大量流行的Electron应用（Atom，Slack，Visual Studio Code等），都主要用来展示本地内容，基本不会让远程内容使用Node integration。如果你的应用执行了线上的文件，你应该承担这个风险导致的责任。
 
-## Chromium Security Issues and Upgrades
+##Chromium 安全问题和更新
 
-While Electron strives to support new versions of Chromium as soon as possible,
-developers should be aware that upgrading is a serious undertaking - involving
-hand-editing dozens or even hundreds of files. Given the resources and
-contributions available today, Electron will often not be on the very latest
-version of Chromium, lagging behind by either days or weeks.
+Electron会尽全力去支持最新的Chromium，开发者应该有所了解，更新是个很费劲的事——需要手动编辑数十上百个文件。从目前的情况来看，Electron使用的Chromium版本通常不是最新的，会落后个几天或者几周。
 
-We feel that our current system of updating the Chromium component strikes an
-appropriate balance between the resources we have available and the needs of the
-majority of applications built on top of the framework. We definitely are
-interested in hearing more about specific use cases from the people that build
-things on top of Electron. Pull requests and contributions supporting this
-effort are always very welcome.
+我觉得，当前我们的系统在Chromium更新和资源之间处在一个平衡点。在框架之上，我们有大量的可用应用程序被构建出来。我们非常高兴又越来越多的人使用Electron来做东西。提交代码和捐款等行为我们都非常支持。
 
 ## Ignoring Above Advice
 A security issue exists whenever you receive code from a remote destination and
