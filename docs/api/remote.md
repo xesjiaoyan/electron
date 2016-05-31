@@ -53,8 +53,16 @@ process. Instead, it created a `BrowserWindow` object in the main process and
 returned the corresponding remote object in the renderer process, namely the
 `win` object.
 
+在上面的例子中，`BrowserWindow`和`win`是远程对象，在渲染进程中不能使用`new BrowserWindow`创建`BrowserWindow`对象。
+实际上，上例中的`win`对象是在主进程创建一个`BrowserWindow`对象，然后在渲染进程中返回相应的远程对象。
+
+
 Please note that only [enumerable properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties) which are present when the remote object is first referenced are
 accessible via remote.
+
+请注意，[enumerable properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties)目前只有当远程对象被引用的时候，才能通过remote访问
+
+
 
 ## Lifetime of Remote Objects
 
@@ -63,6 +71,8 @@ lives (in other words, has not been garbage collected), the corresponding object
 in the main process will not be released. When the remote object has been
 garbage collected, the corresponding object in the main process will be
 dereferenced.
+
+
 
 If the remote object is leaked in the renderer process (e.g. stored in a map but
 never freed), the corresponding object in the main process will also be leaked,
