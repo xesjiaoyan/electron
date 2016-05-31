@@ -1,6 +1,7 @@
 # remote
 
-> Use main process modules from the renderer process. 在渲染进程（renderer process）中使用主进程（main process）相关模块
+> Use main process modules from the renderer process. 
+> 在渲染进程（renderer process）中使用主进程（main process）相关模块
 
 The `remote` module provides a simple way to do inter-process communication
 (IPC) between the renderer process (web page) and the main process.
@@ -16,8 +17,8 @@ similar to Java's [RMI][rmi]. An example of creating a browser window from a
 renderer process:
 
 在Electron，GUI（用户图形界面）相关模块，像`dialog`，`menu`等，仅在主进程中可用，渲染进程中不可用。
-为了能够在渲染进程中使用，`ipc`模块必须给主进程发送进程间信息（inter-process messages）。通过`remote`模块，
-你可以不必显示的发送进程间信息（inter-process messages）就能够执行主进程中的方法，类似Jave中的[RMI][rmi]。
+为了能够在渲染进程中使用，`ipc`模块必须给主进程发送进程间消息（inter-process messages）。通过`remote`模块，
+你可以不必显示的发送进程间消息（inter-process messages）就能够执行主进程中的方法，类似Jave中的[RMI][rmi]。
 以下是一个通过渲染进程创建BrowserWindow的例子。
 
 
@@ -31,6 +32,8 @@ win.loadURL('https://github.com');
 **Note:** for the reverse (access the renderer process from the main process),
 you can use [webContents.executeJavascript](web-contents.md#webcontentsexecutejavascriptcode-usergesture).
 
+**注意：**反过来，如果你想通过主进程访问渲染进程，你可以使用[webContents.executeJavascript](web-contents.md#webcontentsexecutejavascriptcode-usergesture).
+
 ## Remote Objects
 
 Each object (including functions) returned by the `remote` module represents an
@@ -38,6 +41,11 @@ object in the main process (we call it a remote object or remote function).
 When you invoke methods of a remote object, call a remote function, or create
 a new object with the remote constructor (function), you are actually sending
 synchronous inter-process messages.
+
+通过`remote`返回主进程中的对象（包括方法），我们称它为远程对象或者远程方法。
+当你调用远程对象，或者执行远程方法，以及通过远程构造函数创建一个对象，实际上你是
+发送了一个同步进程间消息（inter-process messages）
+
 
 In the example above, both `BrowserWindow` and `win` were remote objects and
 `new BrowserWindow` didn't create a `BrowserWindow` object in the renderer
