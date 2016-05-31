@@ -1,9 +1,11 @@
 # remote
 
-> Use main process modules from the renderer process.
+> Use main process modules from the renderer process. 在渲染进程（renderer process）中使用主进程（main process）相关模块
 
 The `remote` module provides a simple way to do inter-process communication
 (IPC) between the renderer process (web page) and the main process.
+
+`remote`提供了一个简单的主进程和渲染进程间通讯（IPC）的方式
 
 In Electron, GUI-related modules (such as `dialog`, `menu` etc.) are only
 available in the main process, not in the renderer process. In order to use them
@@ -12,6 +14,12 @@ messages to the main process. With the `remote` module, you can invoke methods
 of the main process object without explicitly sending inter-process messages,
 similar to Java's [RMI][rmi]. An example of creating a browser window from a
 renderer process:
+
+在Electron，GUI（用户图形界面）相关模块，像`dialog`，`menu`等，仅在主进程中可用，渲染进程中不可用。
+为了能够在渲染进程中使用，`ipc`模块必须给主进程发送进程间信息（inter-process messages）。通过`remote`模块，
+你可以不必显示的发送进程间信息（inter-process messages）就能够执行主进程中的方法，类似Jave中的[RMI][rmi]。
+以下是一个通过渲染进程创建BrowserWindow的例子。
+
 
 ```javascript
 const {BrowserWindow} = require('electron').remote;
